@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{B529371A-3A9C-413D-B413-0B0948176CA5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{CA3E09DA-E6B5-415E-BF2C-E48D595DC835}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B529371A-3A9C-413D-B413-0B0948176CA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B529371A-3A9C-413D-B413-0B0948176CA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B529371A-3A9C-413D-B413-0B0948176CA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA3E09DA-E6B5-415E-BF2C-E48D595DC835}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA3E09DA-E6B5-415E-BF2C-E48D595DC835}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA3E09DA-E6B5-415E-BF2C-E48D595DC835}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA3E09DA-E6B5-415E-BF2C-E48D595DC835}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

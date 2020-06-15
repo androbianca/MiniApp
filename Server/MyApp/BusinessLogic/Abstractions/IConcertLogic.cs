@@ -9,7 +9,7 @@ namespace BusinessLogic.Abstractions
     {
         ICollection<ConcertDto> GetAll();
         ConcertDto GetById(string id);
-        void AddConcert(ConcertDto concertDto);
+        ConcertDto AddConcert(ConcertDto concertDto);
 
     }
 }

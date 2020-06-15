@@ -20,9 +20,11 @@ namespace Service.Controllers
         }
 
         [HttpPost]
-        public void AddConcert(ConcertDto concertDto)
+        public ActionResult<ConcertDto> AddConcert(ConcertDto concertDto)
         {
             _concertLogic.AddConcert(concertDto);
+
+            return concertDto;
         }
 
 
@@ -34,17 +36,23 @@ namespace Service.Controllers
             return Ok(concerts);
         }
 
-        [HttpGet("{id:guid}")]
+        [HttpGet("{id}")]
         public ActionResult<ConcertDto> GetById([FromRoute] string id)
         {
-            var concert = _concertLogic.GetById(id);
-
-            if(concert == null)
+            if (id != null)
             {
-                return NotFound();
-            }
+                var concert = _concertLogic.GetById(id);
 
-            return Ok(concert);
+                if (concert == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(concert);
+
+            }
+            return NotFound();
+
 
         }
 

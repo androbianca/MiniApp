@@ -1,4 +1,5 @@
 ﻿using BusinessLogic.Abstractions;
+using Entities;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -7,28 +8,57 @@ namespace BusinessLogic.Implementations
 {
     public class ConcertLogic : IConcertLogic
     {
-        List<ConcertDto> concerts = new List<ConcertDto>() {
-            new ConcertDto { Id ="6b7bc068-b27d-43d7-8b14-d85df717c197", Singer = "The Weekend", Price = 900, Location = "London" },
-            new ConcertDto { Id = "d001b548-86ad-419d-91a4-81ece895bb7a", Singer = "Delia", Price = 700, Location = "Romania" },
-            new ConcertDto { Id = "dfbaaf18-e7ed-46de-8ddc-d4e28a5e729d", Singer = "Rihanna", Price = 900, Location = "Paris" } };
+        List<Concert> concerts = new List<Concert>() {
+            new Concert { Id ="1", Singer = "The Weekend", Price = 900, Location = "London" },
+            new Concert { Id = "2", Singer = "Delia", Price = 700, Location = "Romania" },
+            new Concert { Id = "3", Singer = "Rihanna", Price = 900, Location = "Paris" } };
 
 
-        public void AddConcert(ConcertDto concertDto)
+        public ConcertDto AddConcert(ConcertDto concertDto)
         {
-            concerts.Add(concertDto);
-
+            var concert = new Concert
+            {
+                Id = Guid.NewGuid().ToString(),
+                Singer = concertDto.Singer,
+                Price = concertDto.Price,
+                Location = concertDto.Location,
+            };
+            
+            concerts.Add(concert);
+            return concertDto;
         }
 
         public ICollection<ConcertDto> GetAll()
         {
-            return concerts;
+            var concertDtos = new List<ConcertDto>();
+            foreach (var concert in concerts) {
+                var concertDto = new ConcertDto
+                {
+                    Singer = concert.Singer,
+                    Price = concert.Price,
+                    Location = concert.Location,
+                };
+                concertDtos.Add(concertDto);
+            }
+           
+            return concertDtos;
         }
 
         public ConcertDto GetById(string id)
         {
             var concert = concerts.Find(x => x.Id == id);
-
-            return concert;
+           
+            if (concert == null)
+            {
+                return null;
+            }
+            var concertDto = new ConcertDto
+            {
+                Singer = concert.Singer,
+                Price = concert.Price,
+                Location = concert.Location,
+            };
+            return concertDto;
         }
     }
 }
