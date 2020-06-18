@@ -37,7 +37,7 @@ namespace Service
             });
 */
             services.AddControllers();
-            services.AddBusinessLogic();
+            services.AddBusinessLogic(Configuration.GetConnectionString("MyApp"));
 
         }
 
