@@ -11,7 +11,10 @@ namespace BusinessLogic.Configurations
         {
             services.AddDataAccess(connectionString);
             services.AddTransient<IConcertLogic, ConcertLogic>();
-         
+            services.AddTransient<ILocationLogic, LocationLogic>();
+            services.AddTransient<ISingerLogic, SingerLogic>();
+
+
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Entities
 {
@@ -8,9 +6,9 @@ namespace Entities
     {
         public string Name { get; set; }
 
-        public int Years { get; set; }
-        public Guid ConcertId { get; set; }
+        public string MusicType { get; set; }
+  
+        public ICollection<ConcertSinger> Concerts { get; set; }
 
-        public Concert Concert { get; set; }
     }
 }

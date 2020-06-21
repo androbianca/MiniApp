@@ -11,13 +11,15 @@ namespace DataAccess
 
         public DbSet<Location> Locations { get; set; }
         public DbSet<Singer> Singers { get; set; }
-        public DbSet<Concert> Concert { get; set; }
+        public DbSet<Concert> Concerts { get; set; }
+        public DbSet<ConcertSinger> ConcertSinger { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new LocationConfiguration());
             modelBuilder.ApplyConfiguration(new SingerConfiguration());
             modelBuilder.ApplyConfiguration(new ConcertConfiguration());
+            modelBuilder.ApplyConfiguration(new ConcertSingerConfiguration());
 
         }
     }

@@ -8,10 +8,8 @@ namespace DataAccess.Configurations.Entities
     {
         public void Configure(EntityTypeBuilder<Singer> builder)
         {
-            // needs to be many to many, another table should be added with SingerId and ConcertId
-            builder.HasOne(x => x.Concert)
-                 .WithMany(y => y.Singers)
-                 .HasForeignKey(z => z.ConcertId);
+            builder.Property(x => x.Name).HasMaxLength(20);
+            builder.Property(x => x.MusicType).HasMaxLength(20);
         }
     }
 }

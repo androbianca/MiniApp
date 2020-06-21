@@ -14,68 +14,32 @@ namespace BusinessLogic.Implementations
      : base(repository)
         {
         }
-
-        /*
-          public ConcertDto AddConcert(ConcertDto concertDto)
-          {
-              var concert = new Concert
-              {
-                  Id = Guid.NewGuid().ToString(),
-                  Singer = concertDto.Singer,
-                  Price = concertDto.Price,
-                  Location = concertDto.Location,
-              };
-
-              concerts.Add(concert);
-              return concertDto;
-          }
-
-          public ICollection<ConcertDto> GetAll()
-          {
-              var concertDtos = new List<ConcertDto>();
-              foreach (var concert in concerts)
-              {
-                  var concertDto = new ConcertDto
-                  {
-                      Singer = concert.Singer,
-                      Price = concert.Price,
-                      Location = concert.Location,
-                  };
-                  concertDtos.Add(concertDto);
-              }
-
-              return concertDtos;
-          }
-
-          public ConcertDto GetById(string id)
-          {
-              var concert = concerts.Find(x => x.Id == id);
-
-              if (concert == null)
-              {
-                  return null;
-              }
-              var concertDto = new ConcertDto
-              {
-                  Singer = concert.Singer,
-                  Price = concert.Price,
-                  Location = concert.Location,
-              };
-              return concertDto;
-          }*/
         public ConcertDto AddConcert(ConcertDto concertDto)
         {
-            throw new NotImplementedException();
+            var concert = new Concert
+            {
+                Id = Guid.NewGuid(),
+                LocationId = Guid.Empty,
+                Price = concertDto.Price,
+            };
+
+            _repository.Insert(concert);
+
+            return null;
         }
 
         public ICollection<ConcertDto> GetAll()
         {
-            throw new NotImplementedException();
+            var result = _repository.GetAll<Concert>();
+
+            return null;
         }
 
-        public ConcertDto GetById(string id)
+        public ConcertDto GetById(Guid id)
         {
-            throw new NotImplementedException();
+            var result = _repository.GetByFilter<Concert>(x => x.Id == id);
+
+            return null;
         }
     }
 }

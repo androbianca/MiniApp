@@ -4,14 +4,16 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200621150423_TableRelationshipsAdded")]
+    partial class TableRelationshipsAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,23 +38,26 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("Concerts");
+                    b.ToTable("Concert");
                 });
 
             modelBuilder.Entity("Entities.ConcertSinger", b =>
                 {
-                    b.Property<Guid>("SingerId")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ConcertId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("SingerId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("SingerId", "ConcertId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ConcertId");
+
+                    b.HasIndex("SingerId");
 
                     b.ToTable("ConcertSinger");
                 });
@@ -87,8 +92,8 @@ namespace DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("MusicType")
-                        .HasColumnType("nvarchar(20)")
+                    b.Property<int>("MusicType")
+                        .HasColumnType("int")
                         .HasMaxLength(20);
 
                     b.Property<string>("Name")

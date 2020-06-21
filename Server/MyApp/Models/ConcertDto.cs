@@ -4,8 +4,8 @@ namespace Models
 {
     public class ConcertDto
     {
-        public string Singer { get; set; }
+        public Guid Id { get; set; }
         public long Price { get; set; }
-        public string Location { get; set; }
+        public Guid LocationId { get; set; }
     }
 }

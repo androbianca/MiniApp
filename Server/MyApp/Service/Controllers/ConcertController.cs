@@ -37,7 +37,7 @@ namespace Service.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<ConcertDto> GetById([FromRoute] string id)
+        public ActionResult<ConcertDto> GetById([FromRoute] Guid id)
         {
             if (id != null)
             {
