@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Models
 {
-    public class ConcertDto
+    public class SingerDto
     {
         public Guid Id { get; set; }
+
         public string Name { get; set; }
-        public long Price { get; set; }
-        public Guid LocationId { get; set; }
+
+        public string MusicType { get; set; }
     }
 }

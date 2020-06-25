@@ -1,5 +1,8 @@
 ﻿using BusinessLogic.Abstractions;
 using Microsoft.AspNetCore.Mvc;
+using Models;
+using System;
+using System.Collections.Generic;
 
 namespace Service.Controllers
 {
@@ -15,5 +18,41 @@ namespace Service.Controllers
         {
             _singerLogic = singerLogic;
         }
+
+        [HttpPost]
+        public ActionResult<SingerDto> AddSinger(SingerDto Singer)
+        {
+            var result = _singerLogic.AddSinger(Singer);
+
+            return result;
+        }
+
+
+        [HttpGet]
+        public ActionResult<ICollection<SingerDto>> GetAll()
+        {
+            var Singers = _singerLogic.GetAll();
+
+            return Ok(Singers);
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<SingerDto> GetById([FromRoute] Guid id)
+        {
+            if (id != null)
+            {
+                var singer = _singerLogic.GetById(id);
+
+                if (singer == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(singer);
+
+            }
+            return NotFound();
+        }
+
     }
 }

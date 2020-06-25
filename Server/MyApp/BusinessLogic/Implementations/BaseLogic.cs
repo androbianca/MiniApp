@@ -4,11 +4,11 @@ namespace BusinessLogic.Implementations
 {
     public class BaseLogic
     {
-        protected readonly IRepository _repository;
+        protected readonly IUnitOfWork _unitOfWork;
 
-        public BaseLogic(IRepository repository)
+        public BaseLogic(IUnitOfWork unitOfWork)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
         }
     }
 }

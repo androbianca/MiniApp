@@ -5,6 +5,7 @@ namespace Entities
 {
     public class Concert: BaseEntity
     {
+        public string Name { get; set; }
         public long Price { get; set; }
         public Guid LocationId { get; set; }
         public Location Location { get; set; }

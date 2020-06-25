@@ -1,5 +1,6 @@
 ﻿using BusinessLogic.Abstractions;
 using DataAccess.Abstractions;
+using DataAccess.Implementations;
 using Entities;
 using Models;
 using System;
@@ -9,9 +10,8 @@ namespace BusinessLogic.Implementations
 {
     public class ConcertLogic : BaseLogic, IConcertLogic
     {
-
-        public ConcertLogic(IRepository repository)
-     : base(repository)
+        public ConcertLogic(IUnitOfWork unitOfWork)
+     : base(unitOfWork)
         {
         }
         public ConcertDto AddConcert(ConcertDto concertDto)
@@ -19,27 +19,59 @@ namespace BusinessLogic.Implementations
             var concert = new Concert
             {
                 Id = Guid.NewGuid(),
-                LocationId = Guid.Empty,
+                Name = concertDto.Name,
+                LocationId = concertDto.LocationId,
                 Price = concertDto.Price,
             };
 
-            _repository.Insert(concert);
-
-            return null;
+            _unitOfWork.ConcertRepository.Insert(concert);
+            _unitOfWork.Commit();
+           
+            concertDto.Id = concert.Id;
+            return concertDto;
         }
 
         public ICollection<ConcertDto> GetAll()
         {
-            var result = _repository.GetAll<Concert>();
+            var concerts = _unitOfWork.ConcertRepository.GetAll<Concert>();
 
-            return null;
+            var concertDtos = new List<ConcertDto>();
+
+            foreach (var concert in concerts)
+            {
+
+                var concertDto = new ConcertDto
+                {
+                    Id = concert.Id,
+                    Name = concert.Name,
+                    LocationId = concert.LocationId,
+                    Price = concert.Price,
+                };
+
+                concertDtos.Add(concertDto);
+            }
+
+            return concertDtos;
         }
 
         public ConcertDto GetById(Guid id)
         {
-            var result = _repository.GetByFilter<Concert>(x => x.Id == id);
+            var concert = _unitOfWork.ConcertRepository.GetByFilter<Concert>(x => x.Id == id);
 
-            return null;
+            if(concert == null)
+            {
+                return null;
+            }
+
+            var concertDto = new ConcertDto
+            {
+                Id = concert.Id,
+                Name = concert.Name,
+                LocationId = concert.LocationId,
+                Price = concert.Price,
+            };
+
+            return concertDto;
         }
     }
 }

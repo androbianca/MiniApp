@@ -11,7 +11,8 @@ namespace DataAccess.Configurations
         public static void AddDataAccess(this IServiceCollection services, string connectionString)
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
-            services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
         }
     }
 }

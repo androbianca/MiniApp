@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace DataAccess.Abstractions
 {
-    public interface IRepository
+    public interface IRepository<TEntity> where TEntity : class
     {
         ICollection<T> GetAll<T>()
             where T : BaseEntity;
