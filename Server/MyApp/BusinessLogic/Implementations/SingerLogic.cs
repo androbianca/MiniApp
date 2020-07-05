@@ -43,7 +43,7 @@ namespace BusinessLogic.Implementations
 
                 var singerDto = new SingerDto
                 {
-                    Id = Guid.NewGuid(),
+                    Id= singer.Id,
                     Name = singer.Name,
                     MusicType = singer.MusicType,
                 };

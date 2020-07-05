@@ -9,6 +9,7 @@ namespace DataAccess.Implementations
         private IRepository<Concert> concertRepository;
         private IRepository<Singer> singerRepository;
         private IRepository<Location> locationRepository;
+        private IRepository<ConcertSinger> concertSingerRepository;
 
 
         public IRepository<Concert> ConcertRepository
@@ -48,6 +49,20 @@ namespace DataAccess.Implementations
                 return locationRepository;
             }
         }
+
+        public IRepository<ConcertSinger> ConcertSingerRepository
+        {
+            get
+            {
+
+                if (concertSingerRepository == null)
+                {
+                    concertSingerRepository = new Repository<ConcertSinger>(Context);
+                }
+                return concertSingerRepository;
+            }
+        }
+
 
         public UnitOfWork(ApplicationDbContext context)
         {

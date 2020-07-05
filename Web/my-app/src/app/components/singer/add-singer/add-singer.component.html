@@ -1,0 +1,10 @@
+<h1>Insert new singer:</h1>
+<form [formGroup]="singerForm">
+    <label>Name</label>
+    <input formControlName="name" />
+    
+    <label>Music type</label>
+    <input formControlName="musictype"/>
+      
+    <button (click)="submit()">Submit</button>
+</form>

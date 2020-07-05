@@ -13,6 +13,8 @@ namespace BusinessLogic.Configurations
             services.AddTransient<IConcertLogic, ConcertLogic>();
             services.AddTransient<ILocationLogic, LocationLogic>();
             services.AddTransient<ISingerLogic, SingerLogic>();
+            services.AddTransient<IConcertSingerLogic, ConcertSingerLogic>();
+
 
 
         }

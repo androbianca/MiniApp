@@ -1,0 +1,23 @@
+<h1>Insert new concert:</h1>
+<form class="form-wrapper" [formGroup]="concertForm">
+    <label>Name</label>
+    <input formControlName="name" required />
+
+    <label>Price</label>
+    <input formControlName="price" />
+
+    <mat-form-field>
+        <mat-label>Singer</mat-label>
+        <mat-select formControlName="singer">
+            <mat-option *ngFor="let value of singers" [value]="value.id">{{value.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Location</mat-label>
+        <mat-select formControlName="location">
+            <mat-option *ngFor="let value of locations" [value]="value.id">{{value.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button (click)="submit()">Submit</button>
+</form>

@@ -1,0 +1,16 @@
+<h1>Insert new singer:</h1>
+<form [formGroup]="locationForm">
+    <label>Country</label>
+    <input formControlName="country" />
+    
+    <label>County</label>
+    <input formControlName="county"/>
+    
+    <label>Name</label>
+    <input formControlName="name" />
+    
+    <label>Street</label>
+    <input formControlName="street"/>
+      
+    <button (click)="submit()">Submit</button>
+</form>

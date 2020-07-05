@@ -14,6 +14,8 @@ namespace DataAccess.Abstractions
         IRepository<Concert> ConcertRepository { get; }
         IRepository<Singer> SingerRepository { get; }
         IRepository<Location> LocationRepository { get; }
+        IRepository<ConcertSinger> ConcertSingerRepository { get; }
+
 
     }
 }

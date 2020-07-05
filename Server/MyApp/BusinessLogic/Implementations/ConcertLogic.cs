@@ -10,9 +10,11 @@ namespace BusinessLogic.Implementations
 {
     public class ConcertLogic : BaseLogic, IConcertLogic
     {
-        public ConcertLogic(IUnitOfWork unitOfWork)
+        public readonly IConcertSingerLogic _concertSingerLogic;
+        public ConcertLogic(IUnitOfWork unitOfWork, IConcertSingerLogic concertSingerLogic)
      : base(unitOfWork)
         {
+            _concertSingerLogic = concertSingerLogic;
         }
         public ConcertDto AddConcert(ConcertDto concertDto)
         {
@@ -26,7 +28,15 @@ namespace BusinessLogic.Implementations
 
             _unitOfWork.ConcertRepository.Insert(concert);
             _unitOfWork.Commit();
-           
+
+            var concertSinger = new ConcertSingerDto
+            {
+                SingerId = concertDto.SingerId,
+                ConcertId = concert.Id
+
+            };
+            _concertSingerLogic.AddConcertSinger(concertSinger);
+
             concertDto.Id = concert.Id;
             return concertDto;
         }
@@ -58,7 +68,7 @@ namespace BusinessLogic.Implementations
         {
             var concert = _unitOfWork.ConcertRepository.GetByFilter<Concert>(x => x.Id == id);
 
-            if(concert == null)
+            if (concert == null)
             {
                 return null;
             }

@@ -20,6 +20,9 @@ namespace BusinessLogicTests
 
         private readonly IConcertLogic concertLogic;
 
+        private readonly IConcertSingerLogic concertSingerLogic;
+
+
         private readonly Mock<IUnitOfWork> unitOfWorkMock;
 
         private readonly Mock<IRepository<Concert>> repositoryMock;
@@ -44,12 +47,12 @@ namespace BusinessLogicTests
             repositoryMock.Setup(x => x.GetAll<Concert>()).Returns(concerts);
             repositoryMock.Setup(x => x.GetByFilter<Concert>(x => x.Id == It.IsAny<Guid>()))
                 .Returns((Guid id) => concerts.FirstOrDefault(x => x.Id == id));
-            concertLogic = new ConcertLogic(unitOfWorkMock.Object);
+            concertLogic = new ConcertLogic(unitOfWorkMock.Object, concertSingerLogic);
 
         }
 
         [TestMethod]
-        public void GetAllArticleDtos_ShouldReturnAllDtosOfArticles()
+        public void GetAllAConcertDtos_ShouldReturnAllDtosOfConcerts()
         {
            
             var expectedResult = concertLogic.GetAll();
