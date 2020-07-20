@@ -10,10 +10,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SingerModule } from './components/singer/singer.module';
 import { LocationModule } from './components/location/location.module';
 import { ConcertModule } from './components/concert/concert.module';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations"
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { HomeComponent } from './components/home/home.component'
+import { CentricSidenavModule } from '@centric/ng-styleguide';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
   ],
   imports: [BrowserAnimationsModule,
     BrowserModule,
@@ -24,6 +27,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations"
     ConcertModule,
     LocationModule,
     SingerModule,
+    CentricSidenavModule 
+    
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]

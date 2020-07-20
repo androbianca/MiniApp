@@ -1,1 +1,7 @@
-<router-outlet></router-outlet>
+<centric-header type="theme-header">
+    <h4 class="header-title">Mini App</h4>
+</centric-header>
+<centric-sidenav [opened]="true" [menuItems]="menuItems" scrollToTop="false" hasTitleAttribute="true"
+    scrollToTop="false">
+    <router-outlet></router-outlet>
+</centric-sidenav>
