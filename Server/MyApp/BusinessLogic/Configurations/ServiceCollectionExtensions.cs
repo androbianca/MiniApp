@@ -1,7 +1,11 @@
 ﻿using BusinessLogic.Abstractions;
 using BusinessLogic.Implementations;
+using BusinessLogic.Validators;
 using DataAccess.Configurations;
+using Entities;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using Models;
 
 namespace BusinessLogic.Configurations
 {
@@ -14,6 +18,11 @@ namespace BusinessLogic.Configurations
             services.AddTransient<ILocationLogic, LocationLogic>();
             services.AddTransient<ISingerLogic, SingerLogic>();
             services.AddTransient<IConcertSingerLogic, ConcertSingerLogic>();
+            services.AddTransient<IValidator<ConcertDto>, ConcertValidation>();
+            services.AddTransient<IValidator<SingerDto>, SingerValidation>();
+            services.AddTransient<IValidator<LocationDto>, LocationValidation>();
+
+
 
 
 

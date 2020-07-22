@@ -24,7 +24,12 @@ namespace Service.Controllers
         {
             _concertLogic.AddConcert(concertDto);
 
-            return concertDto;
+            if (!ModelState.IsValid) 
+            {
+                return new BadRequestObjectResult(ModelState);
+            }
+
+            return Ok(concertDto);
         }
 
 
@@ -52,8 +57,6 @@ namespace Service.Controllers
 
             }
             return NotFound();
-
-
         }
 
     }

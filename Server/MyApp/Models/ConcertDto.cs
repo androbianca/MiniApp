@@ -1,8 +1,7 @@
 ﻿using System;
 
 namespace Models
-{
-    public class ConcertDto
+{    public class ConcertDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

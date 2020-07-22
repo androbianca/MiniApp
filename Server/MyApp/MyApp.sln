@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06-UnitTests", "06-UnitTest
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessLogic", "BusinessLogic", "{21CEC2DB-0806-408E-8B27-7B7EE14A26EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicTests", "BusinessLogicTests\BusinessLogicTests.csproj", "{1962ACC6-2DD4-412A-8B06-72C079F09762}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogicTests", "BusinessLogicTests\BusinessLogicTests.csproj", "{1962ACC6-2DD4-412A-8B06-72C079F09762}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

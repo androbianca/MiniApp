@@ -1,9 +1,14 @@
 using BusinessLogic.Configurations;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Linq;
+using System.Reflection;
 
 namespace Service
 {
@@ -20,15 +25,23 @@ namespace Service
         public void ConfigureServices(IServiceCollection services)
 
         {
-           /* services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(
-                    builder =>
+            /* services.AddCors(options =>
+             {
+                 options.AddDefaultPolicy(
+                     builder =>
+                     {
+                         builder.WithOrigins("http://localhost:4200");
+                     });
+             });
+
+
+ */
+
+            services.AddMvc()
+                    .AddFluentValidation(o =>
                     {
-                        builder.WithOrigins("http://localhost:4200");
+                        o.RegisterValidatorsFromAssemblyContaining<Startup>();
                     });
-            });
-*/
             services.AddControllers();
             services.AddBusinessLogic(Configuration.GetConnectionString("MyApp"));
 
@@ -44,7 +57,7 @@ namespace Service
             app.UseHttpsRedirection();
 
             app.UseRouting();
-           
+
             //app.UseCors();
 
             app.UseAuthorization();

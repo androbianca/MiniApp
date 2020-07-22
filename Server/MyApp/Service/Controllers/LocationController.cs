@@ -24,7 +24,12 @@ namespace Service.Controllers
         {
             var result = _locationLogic.AddLocation(location);
 
-            return result;
+            if (!ModelState.IsValid)
+            {
+                return new BadRequestObjectResult(ModelState);
+            }
+
+            return Ok(result);
         }
 
 

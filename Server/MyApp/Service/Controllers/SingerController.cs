@@ -24,16 +24,21 @@ namespace Service.Controllers
         {
             var result = _singerLogic.AddSinger(Singer);
 
-            return result;
+            if (!ModelState.IsValid)
+            {
+                return new BadRequestObjectResult(ModelState);
+            }
+
+            return Ok(result);
         }
 
 
         [HttpGet]
         public ActionResult<ICollection<SingerDto>> GetAll()
         {
-            var Singers = _singerLogic.GetAll();
+            var singers = _singerLogic.GetAll();
 
-            return Ok(Singers);
+            return Ok(singers);
         }
 
         [HttpGet("{id}")]

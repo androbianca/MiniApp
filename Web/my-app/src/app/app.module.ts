@@ -12,7 +12,7 @@ import { LocationModule } from './components/location/location.module';
 import { ConcertModule } from './components/concert/concert.module';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { HomeComponent } from './components/home/home.component'
-import { CentricSidenavModule } from '@centric/ng-styleguide';
+import { CentricSidenavModule, CentricHeaderModule } from '@centric/ng-styleguide';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +27,8 @@ import { CentricSidenavModule } from '@centric/ng-styleguide';
     ConcertModule,
     LocationModule,
     SingerModule,
-    CentricSidenavModule 
+    CentricSidenavModule,
+    CentricHeaderModule
     
   ],
   providers: [HttpClientModule],
