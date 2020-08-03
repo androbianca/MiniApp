@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LocationService } from 'src/app/components/location/location.service';
 import { Location } from '../location.model';
 
@@ -9,33 +9,46 @@ import { Location } from '../location.model';
   styleUrls: ['./add-location.component.scss']
 })
 export class AddLocationComponent implements OnInit {
-
   locationForm: FormGroup;
-  location= new Location();
-  
-  constructor(public locationService:LocationService) { }
+  location = new Location();
+
+  get isSubmitButtonDisabled(): boolean {
+    return !this.locationForm.valid;
+  }
+
+  constructor(public locationService: LocationService) { }
 
   ngOnInit(): void {
     this.initForm();
   }
 
-  initForm(): void {
-    this.locationForm = new FormGroup({
-      country: new FormControl(''),
-      county: new FormControl(''),
-      name: new FormControl(''),
-      street: new FormControl(''),
-    })
+  isFieldInvalid(control: string): boolean {
+    return this.locationForm.get(control).invalid && this.locationForm.get(control).touched;
+  }
+
+  getErrorMessage(control: string): string {
+    if (this.locationForm.get(control).hasError('required') && this.locationForm.get(control).touched) {
+      return 'This field is required';
+    }
   }
 
   submit(): void {
-    debugger
-    this.location.country = this.locationForm.get('country').value;
-    this.location.county = this.locationForm.get('county').value;
-    this.location.name = this.locationForm.get('name').value;
-    this.location.street = this.locationForm.get('street').value;
+    if (this.locationForm.valid) {
+      this.location.country = this.locationForm.get('country').value;
+      this.location.county = this.locationForm.get('county').value;
+      this.location.name = this.locationForm.get('name').value;
+      this.location.street = this.locationForm.get('street').value;
 
-    this.locationService.add(this.location).subscribe();
+      this.locationService.add(this.location).subscribe();
+    }
   }
 
+  private initForm(): void {
+    this.locationForm = new FormGroup({
+      country: new FormControl('', [Validators.required]),
+      county: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      street: new FormControl('', [Validators.required]),
+    })
+  }
 }

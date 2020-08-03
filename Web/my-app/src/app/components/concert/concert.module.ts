@@ -3,12 +3,20 @@ import { ConcertComponent } from './concert.component';
 import { AddConcertComponent } from './add-concerts/add-concert.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import {MatSelectModule} from '@angular/material/select';
+import { DisplayConcertsComponent } from './display-concerts/display-concerts.component';
+import { CentricMatInputModule, CentricSelectModule } from '@centric/ng-styleguide';
 
 @NgModule({
-  declarations: [ConcertComponent, AddConcertComponent],
-  imports: [FormsModule,
-    ReactiveFormsModule,CommonModule,MatSelectModule
+  declarations: [
+    ConcertComponent, 
+    AddConcertComponent, 
+    DisplayConcertsComponent],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    CentricMatInputModule,
+    CentricSelectModule 
   ],
   providers: [],
 })

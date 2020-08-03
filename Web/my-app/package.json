@@ -19,7 +19,7 @@
     "@angular/platform-browser": "~9.1.11",
     "@angular/platform-browser-dynamic": "~9.1.11",
     "@angular/router": "~9.1.11",
-    "@centric/ng-styleguide": "^9.5.3",
+    "@centric/ng-styleguide": "^9.6.0",
     "@centric/styleguide": "^9.5.3",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

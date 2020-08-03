@@ -1,10 +1,20 @@
 <h1>Insert new singer:</h1>
-<form [formGroup]="singerForm">
+<form #f="ngForm" (ngSubmit)="onSubmit()">
     <label>Name</label>
-    <input formControlName="name" />
-    
+    <centric-mat-input name="name" 
+                      [(ngModel)]="singer.name" 
+                      required 
+                      [inputClass]="(f.form.controls?.name?.invalid && f.form.controls?.name?.touched ) ? 'input-invalid': ''"
+                      [textMessage]="(f.form.controls?.name?.invalid && f.form.controls?.name?.touched) ? 'This field is required' : ''">
+    </centric-mat-input>
+
     <label>Music type</label>
-    <input formControlName="musictype"/>
-      
-    <button (click)="submit()">Submit</button>
+    <centric-mat-input name="musicType" 
+                      [(ngModel)]="singer.musicType" 
+                      [inputClass]="(f.form.controls?.musicType?.invalid && f.form.controls?.musicType?.touched) ? 'input-invalid': ''"
+                      [textMessage]="(f.form.controls?.musicType?.invalid && f.form.controls?.musicType?.touched) ? 'This field is required' : ''"
+                      required>
+    </centric-mat-input>
+
+    <button [disabled]="isSubmitDisabled">Submit</button>
 </form>

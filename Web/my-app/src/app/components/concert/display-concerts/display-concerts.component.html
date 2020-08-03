@@ -1,18 +1,4 @@
-<!-- <h1>Current list</h1>
+<h1>Current list</h1>
 <div *ngFor="let concert of concerts">
-    {{concert.singer}}
+    {{concert.name}}
 </div>
-
-<h1>Insert id:</h1>
-<div class="form-wrapper">
-    <label>Id</label>
-    <input type="text" [(ngModel)]="id" />
-    <button (click)="getById()">Submit</button>
-</div>
-
-
-<ng-container *ngIf="specificConcert">
-    {{specificConcert.singer}}
-</ng-container>
-
-<app-add-concerts (concertAdded)="onAddedConcert($event)"></app-add-concerts> -->

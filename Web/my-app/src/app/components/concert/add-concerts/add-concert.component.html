@@ -1,23 +1,41 @@
 <h1>Insert new concert:</h1>
 <form class="form-wrapper" [formGroup]="concertForm">
     <label>Name</label>
-    <input formControlName="name" required />
+    <centric-mat-input formControlName="name" 
+                       [inputClass]="isFieldInvalid('name') ? 'input-invalid': ''"
+                       [textMessage]="getErrorMessage('name')">
+    </centric-mat-input>
 
     <label>Price</label>
-    <input formControlName="price" />
+    <centric-mat-input formControlName="price"                 
+                       [inputClass]="isFieldInvalid('price') ? 'input-invalid': ''"
+                       [textMessage]="getErrorMessage('price')">
+    </centric-mat-input>
 
-    <mat-form-field>
-        <mat-label>Singer</mat-label>
-        <mat-select formControlName="singer">
-            <mat-option *ngFor="let value of singers" [value]="value.id">{{value.name}}</mat-option>
-        </mat-select>
-    </mat-form-field>
+    <label>Singer</label>
+    <centric-select formControlName="singer" 
+                    placeholder="Choose an option" 
+                    size="small"
+                    displayPropertyName="name" 
+                    valuePropertyName="id"
+                    [source]="singers" 
+                    [invalid]="isFieldInvalid('singer')"
+                    [errorMessage]="getErrorMessage('singer')" 
+                    (openedChange)="openedChanged('singer')">
+    </centric-select>
 
-    <mat-form-field>
-        <mat-label>Location</mat-label>
-        <mat-select formControlName="location">
-            <mat-option *ngFor="let value of locations" [value]="value.id">{{value.name}}</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <button (click)="submit()">Submit</button>
+
+    <label>Location</label>
+    <centric-select formControlName="location" 
+                    placeholder="Choose an option" 
+                    size="small"
+                    displayPropertyName="name" 
+                    valuePropertyName="id" 
+                    [source]="locations" 
+                    [invalid]="isFieldInvalid('location')"
+                    [errorMessage]="getErrorMessage('location')" 
+                    (openedChange)="openedChanged('location')">
+    </centric-select>
+
+    <button [disabled]="isSubmitButtonDisabled" (click)="submit()">Submit</button>
 </form>

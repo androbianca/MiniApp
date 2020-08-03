@@ -1,16 +1,28 @@
 <h1>Insert new singer:</h1>
 <form [formGroup]="locationForm">
     <label>Country</label>
-    <input formControlName="country" />
-    
+    <centric-mat-input formControlName="country" 
+                       [inputClass]="isFieldInvalid('country') ? 'input-invalid': ''"
+                       [textMessage]="getErrorMessage('country')">
+    </centric-mat-input>
+
     <label>County</label>
-    <input formControlName="county"/>
-    
+    <centric-mat-input formControlName="county" 
+                       [inputClass]="isFieldInvalid('county') ? 'input-invalid': ''"
+                       [textMessage]="getErrorMessage('county')">
+    </centric-mat-input>
+
     <label>Name</label>
-    <input formControlName="name" />
-    
+    <centric-mat-input formControlName="name" 
+                       [inputClass]="isFieldInvalid('name') ? 'input-invalid': ''"
+                       [textMessage]="getErrorMessage('name')">
+    </centric-mat-input>
+
     <label>Street</label>
-    <input formControlName="street"/>
-      
-    <button (click)="submit()">Submit</button>
+    <centric-mat-input formControlName="street" 
+                       [inputClass]="isFieldInvalid('street') ? 'input-invalid': ''"
+                       [textMessage]="getErrorMessage('street')">
+    </centric-mat-input>
+    
+    <button [disabled]="isSubmitButtonDisabled" (click)="submit()">Submit</button>
 </form>
