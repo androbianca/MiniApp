@@ -1,10 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { forkJoin } from 'rxjs';
 import { ConcertService } from 'src/app/components/concert/concert.service';
-import { Concert } from 'src/app/components/concert/concert.model';
 import { LocationService } from '../../location/location.service';
 import { SingerService } from '../../singer/singer.service';
-import { forkJoin } from 'rxjs';
+import { Concert } from 'src/app/components/concert/concert.model';
 import { Singer } from '../../singer/singer.model';
 import { Location } from '../../location/location.model';
 
@@ -20,6 +20,7 @@ export class AddConcertComponent implements OnInit {
   singers: Singer[] = [];
 
   get isSubmitButtonDisabled(): boolean {
+    console.log(`valid:${this.concertForm.invalid}`)
     return !this.concertForm.valid;
   }
 
@@ -34,8 +35,9 @@ export class AddConcertComponent implements OnInit {
     this.initForm();
   }
 
-  isFieldInvalid(control: string): boolean {
-    return this.concertForm.get(control).invalid && this.concertForm.get(control).touched;
+  isFieldInvalid(name: string): boolean {
+    const control = this.concertForm.get(name);
+    return (control.dirty && control.touched) ? control.invalid : false;
   }
 
   getErrorMessage(control: string): string {
@@ -79,5 +81,7 @@ export class AddConcertComponent implements OnInit {
       location: new FormControl('', [Validators.required]),
       singer: new FormControl('', [Validators.required])
     })
+
+    this.concertForm.valueChanges.subscribe(x => console.log(x))
   }
 }

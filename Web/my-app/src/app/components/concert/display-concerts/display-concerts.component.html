@@ -1,4 +1,18 @@
-<h1>Current list</h1>
-<div *ngFor="let concert of concerts">
-    {{concert.name}}
-</div>
+<centric-panel type="panel-type-2" [showFooter]="true">
+    <ng-container panel-header>
+        <span>List of concerts</span>
+    </ng-container>
+    <ng-container panel-content>
+        <table centric-dg #grid class="grid-example-2" [dataSource]="concerts" [filters]="false" [smallRows]="true"
+            [fixedHeader]="true" height="800">
+            <!--Header columns definitions-->
+            <ng-container *ngFor="let col of displayedColumns" centricColumnDef="{{col}}">
+                <th centric-header-cell *centricHeaderCellDef> {{col}}</th>
+                <td centric-cell *centricCellDef="let row">{{ row[col] }}</td>
+            </ng-container>
+            <!--Table rows definitions-->
+            <tr centric-header-row *centricHeaderRowDef="fixedContentCols"></tr>
+            <tr centric-row *centricRowDef="let row; columns: fixedContentCols;"></tr>
+        </table>
+    </ng-container>
+</centric-panel>

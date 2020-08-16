@@ -1,20 +1,23 @@
-<h1>Insert new singer:</h1>
-<form #f="ngForm" (ngSubmit)="onSubmit()">
-    <label>Name</label>
-    <centric-mat-input name="name" 
-                      [(ngModel)]="singer.name" 
-                      required 
-                      [inputClass]="(f.form.controls?.name?.invalid && f.form.controls?.name?.touched ) ? 'input-invalid': ''"
-                      [textMessage]="(f.form.controls?.name?.invalid && f.form.controls?.name?.touched) ? 'This field is required' : ''">
-    </centric-mat-input>
+<div class="form-wrapper">
+    <form #f="ngForm">
 
-    <label>Music type</label>
-    <centric-mat-input name="musicType" 
-                      [(ngModel)]="singer.musicType" 
-                      [inputClass]="(f.form.controls?.musicType?.invalid && f.form.controls?.musicType?.touched) ? 'input-invalid': ''"
-                      [textMessage]="(f.form.controls?.musicType?.invalid && f.form.controls?.musicType?.touched) ? 'This field is required' : ''"
-                      required>
-    </centric-mat-input>
+        <centric-form formTitle="Insert new location">
+            <centric-form-row label="Name">
+                <centric-mat-input name="name" [(ngModel)]="singer.name" required
+                    [inputClass]="(f.form.controls?.name?.invalid && f.form.controls?.name?.touched ) ? 'input-invalid': ''"
+                    [textMessage]="(f.form.controls?.name?.invalid && f.form.controls?.name?.touched) ? 'This field is required' : ''">
+                </centric-mat-input>
+            </centric-form-row>
 
-    <button [disabled]="isSubmitDisabled">Submit</button>
-</form>
+            <centric-form-row label="Music Type">
+                <centric-mat-input name="musicType" [(ngModel)]="singer.musicType"
+                    [inputClass]="(f.form.controls?.musicType?.invalid && f.form.controls?.musicType?.touched) ? 'input-invalid': ''"
+                    [textMessage]="(f.form.controls?.musicType?.invalid && f.form.controls?.musicType?.touched) ? 'This field is required' : ''"
+                    required>
+                </centric-mat-input>
+            </centric-form-row>
+        </centric-form>
+    </form>
+
+</div>
+<centric-button type="button-default" [disabled]="isSubmitButtonDisabled">Submit</centric-button>

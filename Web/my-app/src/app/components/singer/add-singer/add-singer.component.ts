@@ -10,7 +10,7 @@ import { SingerService } from '../singer.service';
 export class AddSingerComponent {
   singer = new Singer();
 
-  get isSubmitDisabled() {
+  get isSubmitButtonDisabled() {
     debugger
     return !(this.singer.musicType && this.singer.name)}
   constructor(public singerService:SingerService) { }

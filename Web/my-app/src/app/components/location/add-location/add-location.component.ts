@@ -22,8 +22,9 @@ export class AddLocationComponent implements OnInit {
     this.initForm();
   }
 
-  isFieldInvalid(control: string): boolean {
-    return this.locationForm.get(control).invalid && this.locationForm.get(control).touched;
+  isFieldInvalid(name: string): boolean {
+    const control = this.locationForm.get(name);
+    return (control.dirty && control.touched) ? control.invalid : false;
   }
 
   getErrorMessage(control: string): string {

@@ -11,7 +11,15 @@ export class DisplayConcertsComponent implements OnInit {
   concerts: Concert[];
   specificConcert: Concert;
   id: string;
+  filterColumns: string[] = ['filterPosition', 'filterName', 'filterWeight', 'filterSymbol'];
 
+  tableModel: string;
+  filterModel: string;
+
+  displayedColumns: string[] = ['name', 'price'];
+  fixedContentCols: string[] = this.displayedColumns.slice();
+  selected(event: any) {}
+  pages(event: any) {}
   constructor(public concertService: ConcertService) { }
 
   ngOnInit(): void {

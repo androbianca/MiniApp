@@ -4,7 +4,7 @@ import { AddConcertComponent } from './add-concerts/add-concert.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DisplayConcertsComponent } from './display-concerts/display-concerts.component';
-import { CentricMatInputModule, CentricSelectModule } from '@centric/ng-styleguide';
+import { CentricMatInputModule, CentricSelectModule, CentricFormModule, CentricButtonModule, CentricPaginatorModule, CentricPanelModule, CentricDataGridModule } from '@centric/ng-styleguide';
 
 @NgModule({
   declarations: [
@@ -14,10 +14,15 @@ import { CentricMatInputModule, CentricSelectModule } from '@centric/ng-stylegui
   imports: [
     FormsModule,
     ReactiveFormsModule,
+    CentricFormModule,
     CommonModule,
     CentricMatInputModule,
-    CentricSelectModule 
+    CentricSelectModule,
+    CentricButtonModule,
+    CentricPaginatorModule,
+    CentricPanelModule,
+    CentricDataGridModule 
   ],
   providers: [],
-})
+}) 
 export class ConcertModule { }
