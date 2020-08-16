@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { CustomRoutes } from '@centric/ng-styleguide';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',

@@ -10,7 +10,6 @@ const routes: Routes = [
   { path: 'singer', component: SingerComponent },
   { path: 'location', component: LocationComponent },
   { path: 'concert', component: ConcertComponent },
-
 ];
 
 @NgModule({

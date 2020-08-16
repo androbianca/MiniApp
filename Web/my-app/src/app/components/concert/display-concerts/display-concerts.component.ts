@@ -20,6 +20,7 @@ export class DisplayConcertsComponent implements OnInit {
   fixedContentCols: string[] = this.displayedColumns.slice();
   selected(event: any) {}
   pages(event: any) {}
+  
   constructor(public concertService: ConcertService) { }
 
   ngOnInit(): void {

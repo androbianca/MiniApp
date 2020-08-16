@@ -5,11 +5,4 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './concert.component.html',
   styleUrls: ['./concert.component.scss']
 })
-export class ConcertComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class ConcertComponent {}
