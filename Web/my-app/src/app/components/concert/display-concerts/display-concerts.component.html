@@ -4,7 +4,8 @@
     </ng-container>
     <ng-container panel-content>
         <table centric-dg #grid class="grid-example-2" [dataSource]="concerts" [filters]="false" [smallRows]="true"
-            [fixedHeader]="true" height="800">
+            [fixedHeader]="true" [dense]="true"
+            height="400">
             <!--Header columns definitions-->
             <ng-container *ngFor="let col of displayedColumns" centricColumnDef="{{col}}">
                 <th centric-header-cell *centricHeaderCellDef> {{col}}</th>
@@ -15,4 +16,11 @@
             <tr centric-row *centricRowDef="let row; columns: fixedContentCols;"></tr>
         </table>
     </ng-container>
+    <!-- <ng-container panel-footer>
+        <centric-paginator [label]="'Results per page'"
+                           [length]="concerts.length"
+                           [pageSize]="10"
+                           [pageSizeOptions]="[5, 10, 25, 100]">
+        </centric-paginator>
+      </ng-container> -->
 </centric-panel>

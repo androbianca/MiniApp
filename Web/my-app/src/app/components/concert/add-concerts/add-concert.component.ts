@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { ConcertService } from 'src/app/components/concert/concert.service';
-import { LocationService } from '../../location/location.service';
-import { SingerService } from '../../singer/singer.service';
 import { Concert } from 'src/app/components/concert/concert.model';
-import { Singer } from '../../singer/singer.model';
-import { Location } from '../../location/location.model';
+import { Singer } from '../../../shared/models/singer.model';
+import { Location } from '../../../shared/models/location.model';
+import { LocationService } from 'src/app/shared/services/location.service';
+import { SingerService } from 'src/app/shared/services/singer.service';
 
 @Component({
   selector: 'app-add-concert',
@@ -20,7 +20,6 @@ export class AddConcertComponent implements OnInit {
   singers: Singer[] = [];
 
   get isSubmitButtonDisabled(): boolean {
-    console.log(`valid:${this.concertForm.invalid}`)
     return !this.concertForm.valid;
   }
 

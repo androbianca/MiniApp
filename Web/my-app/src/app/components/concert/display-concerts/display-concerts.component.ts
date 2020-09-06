@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Concert } from '../concert.model';
 import { ConcertService } from '../concert.service';
+import { SingerService } from 'src/app/shared/services/singer.service';
+import { LocationService } from 'src/app/shared/services/location.service';
+import { ConcertView } from './concert-view.model';
 
 @Component({
   selector: 'app-display-concerts',
@@ -8,27 +10,20 @@ import { ConcertService } from '../concert.service';
   styleUrls: ['./display-concerts.component.scss']
 })
 export class DisplayConcertsComponent implements OnInit {
-  concerts: Concert[];
-  specificConcert: Concert;
-  id: string;
-  filterColumns: string[] = ['filterPosition', 'filterName', 'filterWeight', 'filterSymbol'];
-
-  tableModel: string;
-  filterModel: string;
-
-  displayedColumns: string[] = ['name', 'price'];
+  concerts: ConcertView[];
+  displayedColumns: string[] = ['concertName', 'price', 'locationName', 'singerName'];
   fixedContentCols: string[] = this.displayedColumns.slice();
-  selected(event: any) {}
-  pages(event: any) {}
-  
-  constructor(public concertService: ConcertService) { }
+
+  constructor(public concertService: ConcertService,
+    public singerService: SingerService,
+    public locationService: LocationService) { }
 
   ngOnInit(): void {
     this.getConcerts();
   }
 
   getConcerts(): void {
-    this.concertService.getAll().subscribe(concerts => {
+    this.concertService.getAllConcertViews().subscribe(concerts => {
       this.concerts = concerts;
     })
   }

@@ -1,8 +1,5 @@
-﻿using DataAccess.Implementations;
-using Entities;
+﻿using Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DataAccess.Abstractions
 {
@@ -12,6 +9,7 @@ namespace DataAccess.Abstractions
         void Commit();
 
         IRepository<Concert> ConcertRepository { get; }
+        IRepository<ConcertView> ConcertViewRepository { get; }
         IRepository<Singer> SingerRepository { get; }
         IRepository<Location> LocationRepository { get; }
         IRepository<ConcertSinger> ConcertSingerRepository { get; }

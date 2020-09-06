@@ -18,6 +18,7 @@ namespace BusinessLogic.Configurations
             services.AddTransient<ILocationLogic, LocationLogic>();
             services.AddTransient<ISingerLogic, SingerLogic>();
             services.AddTransient<IConcertSingerLogic, ConcertSingerLogic>();
+            services.AddTransient<IConcertViewLogic, ConcertViewLogic>();
             services.AddTransient<IValidator<ConcertDto>, ConcertValidation>();
             services.AddTransient<IValidator<SingerDto>, SingerValidation>();
             services.AddTransient<IValidator<LocationDto>, LocationValidation>();

@@ -38,6 +38,8 @@ namespace Service.Controllers
         {
             var concerts = _concertLogic.GetAll();
 
+
+
             return Ok(concerts);
         }
 

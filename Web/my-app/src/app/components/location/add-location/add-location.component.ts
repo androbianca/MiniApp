@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { LocationService } from 'src/app/components/location/location.service';
-import { Location } from '../location.model';
+import { Location } from '../../../shared/models/location.model';
+import { LocationService } from 'src/app/shared/services/location.service';
 
 @Component({
   selector: 'app-add-location',

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Location } from './location.model';
-import { BaseService } from 'src/app/shared/services/base.service';
 import { Observable } from 'rxjs';
+import { Location } from '../models/location.model';
+import { BaseService } from './base.service';
 
 @Injectable({
     providedIn: 'root'
@@ -16,5 +16,9 @@ export class LocationService {
 
     public add(location: Location): Observable<Location> {
         return this.baseService.post<Location>('location', location);
+    }
+
+    public getById(id: string) {
+        return this.baseService.get<Location>(`location/${id}`);
     }
 }

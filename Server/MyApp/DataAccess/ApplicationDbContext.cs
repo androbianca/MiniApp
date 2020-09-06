@@ -14,6 +14,7 @@ namespace DataAccess
         public DbSet<Singer> Singers { get; set; }
         public DbSet<Concert> Concerts { get; set; }
         public DbSet<ConcertSinger> ConcertSinger { get; set; }
+        public DbSet<ConcertView> ConcertView { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

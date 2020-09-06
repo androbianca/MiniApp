@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Singer } from 'src/app/components/singer/singer.model';
-import { SingerService } from '../singer.service';
+import { Singer } from 'src/app/shared/models/singer.model';
+import { SingerService } from 'src/app/shared/services/singer.service';
 
 @Component({
   selector: 'app-add-singer',
