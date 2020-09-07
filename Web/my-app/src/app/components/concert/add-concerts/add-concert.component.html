@@ -1,31 +1,44 @@
 <div class="form-wrapper" >
     <centric-form formTitle="Add concert" [formGroup]="concertForm">
-        <centric-form-row label="Name" formControlName="name">
-            <centric-mat-input [inputClass]="isFieldInvalid('name') ? 'input-invalid': ''"
-                [textMessage]="getErrorMessage('name')">
+        <centric-form-row label="Name">
+            <centric-mat-input formControlName="name" 
+                               [inputClass]="isFieldInvalid('name') ? 'input-invalid': ''"
+                               [textMessage]="getErrorMessage('name')">
             </centric-mat-input>
         </centric-form-row>
 
-        <centric-form-row label="Price" formControlName="price">
-            <centric-mat-input [inputClass]="isFieldInvalid('price') ? 'input-invalid': ''"
-                [textMessage]="getErrorMessage('price')">
+        <centric-form-row label="Price">
+            <centric-mat-input formControlName="price" 
+                               [inputClass]="isFieldInvalid('price') ? 'input-invalid': ''"
+                               [textMessage]="getErrorMessage('price')">
             </centric-mat-input>
         </centric-form-row>
 
         <centric-form-row label="Singer">
-            <centric-select formControlName="singer" placeholder="Choose an option" size="small" displayPropertyName="name"
-                valuePropertyName="id" [source]="singers" [invalid]="isFieldInvalid('singer')"
-                [errorMessage]="getErrorMessage('singer')" (openedChange)="openedChanged('singer')">
+            <centric-select formControlName="singer" 
+                            placeholder="Choose an option" 
+                            size="small" 
+                            displayPropertyName="name"
+                            valuePropertyName="id" 
+                            [source]="singers" 
+                            [invalid]="isFieldInvalid('singer')"
+                            [errorMessage]="getErrorMessage('singer')" 
+                            (openedChange)="openedChanged('singer')">
             </centric-select>
         </centric-form-row>
 
         <centric-form-row label="Location">
-            <centric-select formControlName="location" placeholder="Choose an option" size="small" displayPropertyName="name"
-                valuePropertyName="id" [source]="locations" [invalid]="isFieldInvalid('location')"
-                [errorMessage]="getErrorMessage('location')" (openedChange)="openedChanged('location')">
+            <centric-select formControlName="location" 
+                            placeholder="Choose an option" 
+                            size="small" 
+                            displayPropertyName="name"
+                            valuePropertyName="id" 
+                            [source]="locations" 
+                            [invalid]="isFieldInvalid('location')"
+                            [errorMessage]="getErrorMessage('location')" 
+                            (openedChange)="openedChanged('location')">
             </centric-select>
         </centric-form-row>
-
     </centric-form>
 </div>
 <centric-button type="button-default" [disabled]="isSubmitButtonDisabled">Submit</centric-button>

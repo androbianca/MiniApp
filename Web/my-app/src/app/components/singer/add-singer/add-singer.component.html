@@ -2,21 +2,25 @@
     <form #f="ngForm">
         <centric-form formTitle="Insert new location">
             <centric-form-row label="Name">
-                <centric-mat-input name="name" [(ngModel)]="singer.name" required
+                <centric-mat-input 
+                    name="name" 
+                    required
+                    [(ngModel)]="singer.name" 
                     [inputClass]="(f.form.controls?.name?.invalid && f.form.controls?.name?.touched ) ? 'input-invalid': ''"
                     [textMessage]="(f.form.controls?.name?.invalid && f.form.controls?.name?.touched) ? 'This field is required' : ''">
                 </centric-mat-input>
             </centric-form-row>
 
             <centric-form-row label="Music Type">
-                <centric-mat-input name="musicType" [(ngModel)]="singer.musicType"
+                <centric-mat-input
+                    name="musicType"
+                    required 
+                    [(ngModel)]="singer.musicType"
                     [inputClass]="(f.form.controls?.musicType?.invalid && f.form.controls?.musicType?.touched) ? 'input-invalid': ''"
-                    [textMessage]="(f.form.controls?.musicType?.invalid && f.form.controls?.musicType?.touched) ? 'This field is required' : ''"
-                    required>
+                    [textMessage]="(f.form.controls?.musicType?.invalid && f.form.controls?.musicType?.touched) ? 'This field is required' : ''">
                 </centric-mat-input>
             </centric-form-row>
         </centric-form>
     </form>
-
 </div>
 <centric-button type="button-default" [disabled]="isSubmitButtonDisabled">Submit</centric-button>

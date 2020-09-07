@@ -3,10 +3,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { ConcertService } from 'src/app/components/concert/concert.service';
 import { Concert } from 'src/app/components/concert/concert.model';
-import { Singer } from '../../../shared/models/singer.model';
-import { Location } from '../../../shared/models/location.model';
 import { LocationService } from 'src/app/shared/services/location.service';
 import { SingerService } from 'src/app/shared/services/singer.service';
+import { Singer } from '../../../shared/models/singer.model';
+import { Location } from '../../../shared/models/location.model';
 
 @Component({
   selector: 'app-add-concert',
@@ -23,11 +23,10 @@ export class AddConcertComponent implements OnInit {
     return !this.concertForm.valid;
   }
 
-  constructor (
+  constructor(
     public concertService: ConcertService, 
     public locationService: LocationService,
-    public singerService: SingerService) 
-    { }
+    public singerService: SingerService) { }
 
   ngOnInit(): void {
     this.loadData();

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ConcertService } from '../concert.service';
 import { SingerService } from 'src/app/shared/services/singer.service';
 import { LocationService } from 'src/app/shared/services/location.service';
+import { ConcertService } from '../concert.service';
 import { ConcertView } from './concert-view.model';
 
 @Component({
@@ -14,7 +14,8 @@ export class DisplayConcertsComponent implements OnInit {
   displayedColumns: string[] = ['concertName', 'price', 'locationName', 'singerName'];
   fixedContentCols: string[] = this.displayedColumns.slice();
 
-  constructor(public concertService: ConcertService,
+  constructor(
+    public concertService: ConcertService,
     public singerService: SingerService,
     public locationService: LocationService) { }
 
@@ -22,7 +23,7 @@ export class DisplayConcertsComponent implements OnInit {
     this.getConcerts();
   }
 
-  getConcerts(): void {
+  private getConcerts(): void {
     this.concertService.getAllConcertViews().subscribe(concerts => {
       this.concerts = concerts;
     })

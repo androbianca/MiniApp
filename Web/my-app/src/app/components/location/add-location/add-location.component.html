@@ -1,29 +1,32 @@
 <div class="form-wrapper">
     <centric-form formTitle="Insert new location" [formGroup]="locationForm">
-        <centric-form-row label="Country" formControlName="country">
-            <centric-mat-input [inputClass]="isFieldInvalid('country') ? 'input-invalid': ''"
-                [textMessage]="getErrorMessage('country')">
+        <centric-form-row label="Country">
+            <centric-mat-input formControlName="country" 
+                               [inputClass]="isFieldInvalid('country') ? 'input-invalid': ''"
+                               [textMessage]="getErrorMessage('country')">
             </centric-mat-input>
         </centric-form-row>
 
-        <centric-form-row label="County" formControlName="county">
-            <centric-mat-input [inputClass]="isFieldInvalid('county') ? 'input-invalid': ''"
-                [textMessage]="getErrorMessage('county')">
+        <centric-form-row label="County">
+            <centric-mat-input formControlName="county" 
+                               [inputClass]="isFieldInvalid('county') ? 'input-invalid': ''"
+                               [textMessage]="getErrorMessage('county')">
             </centric-mat-input>
         </centric-form-row>
 
-        <centric-form-row label="Name" formControlName="name">
-            <centric-mat-input [inputClass]="isFieldInvalid('name') ? 'input-invalid': ''"
-                [textMessage]="getErrorMessage('name')">
+        <centric-form-row label="Name">
+            <centric-mat-input  formControlName="name" 
+                                [inputClass]="isFieldInvalid('name') ? 'input-invalid': ''"
+                                [textMessage]="getErrorMessage('name')">
             </centric-mat-input>
         </centric-form-row>
 
-        <centric-form-row label="Street" formControlName="street">
-            <centric-mat-input [inputClass]="isFieldInvalid('street') ? 'input-invalid': ''"
-                [textMessage]="getErrorMessage('street')">
+        <centric-form-row label="Street">
+            <centric-mat-input formControlName="street" 
+                               [inputClass]="isFieldInvalid('street') ? 'input-invalid': ''"
+                               [textMessage]="getErrorMessage('street')">
             </centric-mat-input>
         </centric-form-row>
     </centric-form>
 </div>
-
 <centric-button type="button-default" [disabled]="isSubmitButtonDisabled">Submit</centric-button>
