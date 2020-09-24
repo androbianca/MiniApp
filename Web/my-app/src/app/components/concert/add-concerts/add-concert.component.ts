@@ -57,7 +57,7 @@ export class AddConcertComponent implements OnInit {
       this.concert.locationId = this.concertForm.get('location').value;
       this.concert.singerId = this.concertForm.get('singer').value;
   
-      this.concertService.add(this.concert).subscribe();
+      this.concertService.add(this.concert).subscribe((result) => location.reload() );
     }
   }
 

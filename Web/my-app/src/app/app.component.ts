@@ -7,6 +7,7 @@ import { CustomRoutes } from '@centric/ng-styleguide';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  opened: boolean = true;
   menuItems: CustomRoutes = [
     {
       name: 'Concert',
@@ -25,4 +26,8 @@ export class AppComponent {
       path: '',
     }
   ]
+
+  toggleMenu(): void {
+    this.opened = !this.opened;
+  }
 }

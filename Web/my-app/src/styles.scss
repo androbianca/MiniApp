@@ -1,6 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@centric/styleguide/blue-theme.css';
+@import '~@centric/styleguide/green-theme.css';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+::ng-deep centric-mat-input {
+    mat-form-field {
+        .mat-form-field-wrapper {
+            padding: 0 !important;
+        }
+    }
+}
