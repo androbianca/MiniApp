@@ -24,6 +24,8 @@ namespace BusinessLogic.Implementations
                 County = locationDto.County,
                 Name = locationDto.Name,
                 Street = locationDto.Street,
+                Latitude = locationDto.Latitude,
+                Longitude = locationDto.Longitude
             };
 
             _unitOfWork.LocationRepository.Insert(location);
@@ -46,8 +48,10 @@ namespace BusinessLogic.Implementations
                     Country = location.Country,
                     County = location.County,
                     Name = location.Name,
-                    Street = location.Street
-                };
+                    Street = location.Street,
+                    Latitude = location.Latitude,
+                    Longitude = location.Longitude
+            };
 
                 locationDtos.Add(locationDto);
             }
@@ -65,7 +69,9 @@ namespace BusinessLogic.Implementations
                 Country = location.Country,
                 County = location.County,
                 Name = location.Name,
-                Street = location.Street
+                Street = location.Street,
+                Latitude = location.Latitude,
+                Longitude = location.Longitude
             };
 
             return locationDto;

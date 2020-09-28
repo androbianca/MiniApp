@@ -11,7 +11,8 @@ import { AppComponent } from './app.component';
 import { SingerModule } from './components/singer/singer.module';
 import { LocationModule } from './components/location/location.module';
 import { ConcertModule } from './components/concert/concert.module';
-import { HomeComponent } from './components/home/home.component'
+import { HomeComponent } from './components/home/home.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,8 +29,7 @@ import { HomeComponent } from './components/home/home.component'
     SingerModule,
     CentricSidenavModule,
     CentricHeaderModule,
-    CentricButtonModule
-    
+    CentricButtonModule,
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]

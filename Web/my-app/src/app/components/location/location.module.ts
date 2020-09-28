@@ -8,12 +8,16 @@ import {
   CentricPaginatorModule, 
   CentricPanelModule, 
   CentricDataGridModule,
-   CentricFormModule } from '@centric/ng-styleguide';
+   CentricFormModule, CentricDialogModule } from '@centric/ng-styleguide';
+import { MapComponent } from './map/map.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
     LocationComponent, 
-    AddLocationComponent
+    AddLocationComponent,
+    MapComponent,
   ],
   imports: [
     FormsModule,
@@ -23,8 +27,13 @@ import {
     CentricPaginatorModule,
     CentricPanelModule,
     CentricDataGridModule,
-    CentricFormModule 
+    CentricFormModule,
+    CentricDialogModule,
+    CentricButtonModule,
+    GoogleMapsModule,
+    BrowserModule 
   ],
   providers: [],
+  entryComponents:[MapComponent]
 })
 export class LocationModule { }
