@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { GoogleMap, } from '@angular/google-maps';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Coordinates } from './coordinates';
 
 @Component({
   selector: 'app-map',
@@ -8,10 +10,11 @@ import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 })
 export class MapComponent implements OnInit {
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap
-  @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow
 
   zoom = 12
-  center: google.maps.LatLngLiteral
+  markers = []
+  latitude: number;
+  longitude: number;
   options: google.maps.MapOptions = {
     zoomControl: false,
     scrollwheel: false,
@@ -20,11 +23,10 @@ export class MapComponent implements OnInit {
     maxZoom: 15,
     minZoom: 8,
   }
-  markers = []
-  infoContent = ''
-  latitude: string;
-  longitude: string;
+  center: any
 
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,public dialogRef: MatDialogRef<MapComponent>) {}
+  
   ngOnInit(): void {
     navigator.geolocation.getCurrentPosition((position) => {
       this.center = {
@@ -43,52 +45,25 @@ export class MapComponent implements OnInit {
   }
 
   click(event: any): void {
-    console.log(+event.latLng.lat(),+event.latLng.lng())
+    this.markers = []
     this.markers.push({
       position: {
         lat: +event.latLng.lat(),
         lng: +event.latLng.lng()
       },
-      label: {
-        color: 'red',
-        text: 'Marker label ' + (this.markers.length + 1),
-      },
-      title: 'Marker title ' + (this.markers.length + 1),
-      info: 'Marker info ' + (this.markers.length + 1),
       options: {
         animation: google.maps.Animation.BOUNCE,
       },
     })
-
     this.latitude = event.latLng.lat();
     this.longitude = event.latLng.lng();
-
   }
 
-  logCenter(): void {
-    console.log(JSON.stringify(this.map.getCenter()))
-  }
-
-  addMarker(): void {
-    this.markers.push({
-      position: {
-        lat: this.center.lat + ((Math.random() - 0.5) * 2) / 10,
-        lng: this.center.lng + ((Math.random() - 0.5) * 2) / 10,
-      },
-      label: {
-        color: 'red',
-        text: 'Marker label ' + (this.markers.length + 1),
-      },
-      title: 'Marker title ' + (this.markers.length + 1),
-      info: 'Marker info ' + (this.markers.length + 1),
-      options: {
-        animation: google.maps.Animation.BOUNCE,
-      },
+  closeDialog(): void {
+    const coordinates = new Coordinates({
+      latitude: this.latitude,
+      longitude: this.longitude
     })
-  }
-
-  openInfo(marker: MapMarker, content) {
-    this.infoContent = content
-    this.info.open(marker)
+    this.dialogRef.close(coordinates);
   }
 }

@@ -1,26 +1,38 @@
-<google-map
-  height="500px"
-  width="800px"
-  [zoom]="zoom"
-  [center]="center"
-  [options]="options"
-  (mapClick)="click($event)"
->
-  <map-marker
-    #markerElem
-    *ngFor="let marker of markers"
-    [position]="marker.position"
-    [label]="marker.label"
-    [title]="marker.title"
-    [options]="marker.options"
-    (mapClick)="openInfo(markerElem, marker.info)"
-  >
-  </map-marker>
+<ng-container cdkDrag
+              cdkDragRootElement=".cdk-overlay-pane">
+  <span mat-dialog-title
+        cdkDragHandle>
+    <h1>{{data.name}}</h1>
+    <centric-icon svgIcon="icon-close"
+                  size="12"
+                  (click)="closeDialog()">
+    </centric-icon>
+  </span>
+  <div mat-dialog-content
+       cdkScrollable>
+        <google-map height="500px"
+                    width="800px"
+                    [zoom]="zoom"
+                    [center]="center"
+                    [options]="options"
+                    (mapClick)="click($event)" >
+                      <map-marker #markerElem
+                                  *ngFor="let marker of markers"
+                                  [position]="marker.position"
+                                  [label]="marker.label"
+                                  [title]="marker.title"
+                                  [options]="marker.options"
+                                  (mapClick)="openInfo(markerElem, marker.info)">
+                      </map-marker>
+         </google-map>
+     
+     <centric-button (click)="zoomIn()">Zoom in</centric-button>
+     <centric-button (click)="zoomOut()">Zoom out</centric-button>
+    </div>
+  <div mat-dialog-actions>
+    <centric-button type="button-default"
+                    (click)="closeDialog()">Ok 
+    </centric-button>
+  </div>
+</ng-container>
 
-  <map-info-window>{{ infoContent }}</map-info-window>
-</google-map>
-
-<button (click)="zoomIn()">Zoom in</button>
-<button (click)="zoomOut()">Zoom out</button>
-<button (click)="logCenter()">Log center</button>
-<button (click)="addMarker()">Add marker</button>

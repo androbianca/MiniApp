@@ -27,6 +27,10 @@
                                [textMessage]="getErrorMessage('street')">
             </centric-mat-input>
         </centric-form-row>
+        <centric-form-row label="Coordinates">
+            <centric-button (click)="openModal()">Open map</centric-button>
+        </centric-form-row>
     </centric-form>
 </div>
-<centric-button type="button-default" [disabled]="isSubmitButtonDisabled">Submit</centric-button>
+
+<centric-button type="button-default" [disabled]="isSubmitButtonDisabled" (click)="submit()">Submit</centric-button>
