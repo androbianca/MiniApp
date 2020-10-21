@@ -6,8 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  lat = 40.730610;
-  lng = -73.935242;
 }
 
 

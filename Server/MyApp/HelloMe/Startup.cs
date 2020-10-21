@@ -1,17 +1,18 @@
-using BusinessLogic.Configurations;
-using FluentValidation.AspNetCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Centric.Integration.HelloMe.Authentication.AspNetCore.WebApi.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Linq;
-using System.Reflection;
 
-namespace Service
+namespace HelloMe
 {
     public class Startup
     {
@@ -24,44 +25,25 @@ namespace Service
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-
         {
-            /* services.AddCors(options =>
-             {
-                 options.AddDefaultPolicy(
-                     builder =>
-                     {
-                         builder.WithOrigins("http://localhost:4200");
-                     });
-             });
-
-
- */
-
-            services.AddMvc()
-                    .AddFluentValidation(o =>
-                    {
-                        o.RegisterValidatorsFromAssemblyContaining<Startup>();
-                    });
             services.AddControllers();
-            services.AddBusinessLogic(Configuration.GetConnectionString("MyApp"));
+            services.AddHelloMeJwtBearer();
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            loggerFactory.AddFile("Logs/myapp-{Date}.txt");
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            //app.UseCors();
+           
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BusinessLogic.Abstractions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Models;
 
 namespace Service.Controllers
@@ -11,18 +12,27 @@ namespace Service.Controllers
     [ApiController]
     public class ConcertController : ControllerBase
     {
+        private readonly ILogger<ConcertController> _logger;
 
         private readonly IConcertLogic _concertLogic;
 
-        public ConcertController(IConcertLogic concertLogic)
+        public ConcertController(IConcertLogic concertLogic, ILogger<ConcertController> logger)
         {
             _concertLogic = concertLogic;
+            _logger = logger;
         }
 
         [HttpPost]
         public ActionResult<ConcertDto> AddConcert(ConcertDto concertDto)
         {
-            _concertLogic.AddConcert(concertDto);
+            
+             try
+            {
+                _concertLogic.AddConcert(concertDto);
+            } catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+            }
 
             if (!ModelState.IsValid) 
             {

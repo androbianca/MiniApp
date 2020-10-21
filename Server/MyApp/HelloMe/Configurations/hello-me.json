@@ -1,0 +1,7 @@
+{
+  "Authority": "https://hellomeint.its.centric.lan/",
+  "ClientId": "HelloMeDemoOidcNetCore",
+  "ClientSecret": "Af7jXQIyxU8ztkKkxAjESBmvXx2kj3sSehnyDFUJ26HHwTuR5L2CboQm7rKNqZ",
+  "Audience": "https://localhost:44309/",
+  "HmacSymmetricSigningKey": "CbWNXQAgJ9EAOra8rjNBEIR2rJJ+ZUqz+lXXzA/Q2uw="
+}
