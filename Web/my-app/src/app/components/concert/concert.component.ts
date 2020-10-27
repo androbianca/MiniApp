@@ -5,4 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './concert.component.html',
   styleUrls: ['./concert.component.scss']
 })
-export class ConcertComponent {}
+export class ConcertComponent {
+  public addedConcertEvent: Event;
+
+  onConcertAdded(event: Event) {
+    this.addedConcertEvent = event;
+  }
+}

@@ -2,7 +2,10 @@
 using DataAccess.Abstractions;
 using DataAccess.Implementations;
 using Entities;
+using Microsoft.Extensions.Logging;
 using Models;
+using Serilog;
+using Serilog.Events;
 using System;
 using System.Collections.Generic;
 
@@ -11,23 +14,23 @@ namespace BusinessLogic.Implementations
     public class ConcertLogic : BaseLogic, IConcertLogic
     {
         public readonly IConcertSingerLogic _concertSingerLogic;
-        public ConcertLogic(IUnitOfWork unitOfWork, IConcertSingerLogic concertSingerLogic)
+        private readonly ILogger<ConcertLogic> _logger;
+
+        public ConcertLogic(IUnitOfWork unitOfWork, IConcertSingerLogic concertSingerLogic, ILogger<ConcertLogic> logger)
      : base(unitOfWork)
         {
             _concertSingerLogic = concertSingerLogic;
+            _logger = logger;
         }
         public ConcertDto AddConcert(ConcertDto concertDto)
         {
             var concert = new Concert
             {
-                Id = Guid.NewGuid(),
+                Id = Guid.Parse("72df89e3-cc62-4882-bfab-a399557e6b55"),
                 Name = concertDto.Name,
                 LocationId = concertDto.LocationId,
                 Price = concertDto.Price,
             };
-
-            _unitOfWork.ConcertRepository.Insert(concert);
-            _unitOfWork.Commit();
 
             var concertSinger = new ConcertSingerDto
             {
@@ -35,9 +38,21 @@ namespace BusinessLogic.Implementations
                 ConcertId = concert.Id
 
             };
-            _concertSingerLogic.AddConcertSinger(concertSinger);
 
+            try
+            {
+                _unitOfWork.ConcertRepository.Insert(concert);
+                _unitOfWork.Commit();
+            }
+
+            catch (Exception e)
+            {
+                _logger.LogError(e, e.Message);
+            }
+
+            _concertSingerLogic.AddConcertSinger(concertSinger);
             concertDto.Id = concert.Id;
+
             return concertDto;
         }
 

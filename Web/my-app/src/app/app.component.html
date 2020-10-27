@@ -1,15 +1,13 @@
 <centric-header type="theme-header">
     <h4 class="header-title">Mini App</h4>
 </centric-header>
-<centric-button type="button-default"
-                size="small"   
-                (click)="toggleMenu()">
-                Toggle menu
-</centric-button>
-<centric-sidenav scrollToTop="false" 
-                 hasTitleAttribute="true" 
-                 scrollToTop="false" 
-                 [menuItems]="menuItems"
-                 [(opened)]="opened">
-    <router-outlet></router-outlet>
-</centric-sidenav>
+<app-login *ngIf="!isLoggedIn" (onLogin)="onLoginEvent($event)"></app-login>
+<ng-container *ngIf="isLoggedIn">
+    <centric-button type="button-default" size="small" (click)="toggleMenu()">
+        Toggle menu
+    </centric-button>
+    <centric-sidenav scrollToTop="false" hasTitleAttribute="true" scrollToTop="false" [menuItems]="menuItems"
+        [(opened)]="opened">
+        <router-outlet></router-outlet>
+    </centric-sidenav>
+</ng-container>

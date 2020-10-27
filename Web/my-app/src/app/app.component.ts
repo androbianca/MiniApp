@@ -8,6 +8,7 @@ import { CustomRoutes } from '@centric/ng-styleguide';
 })
 export class AppComponent {
   opened: boolean = true;
+  isLoggedIn = false;
   menuItems: CustomRoutes = [
     {
       name: 'Concert',
@@ -29,5 +30,9 @@ export class AppComponent {
 
   toggleMenu(): void {
     this.opened = !this.opened;
+  }
+
+  onLoginEvent(event: any): void {
+    this.isLoggedIn = event;
   }
 }

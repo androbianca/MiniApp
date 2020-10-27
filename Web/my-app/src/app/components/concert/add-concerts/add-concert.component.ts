@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { ConcertService } from 'src/app/components/concert/concert.service';
@@ -7,6 +7,7 @@ import { LocationService } from 'src/app/shared/services/location.service';
 import { SingerService } from 'src/app/shared/services/singer.service';
 import { Singer } from '../../../shared/models/singer.model';
 import { Location } from '../../../shared/models/location.model';
+import { ConcertSharedService } from '../concert-shared.service';
 
 @Component({
   selector: 'app-add-concert',
@@ -14,6 +15,8 @@ import { Location } from '../../../shared/models/location.model';
   styleUrls: ['./add-concert.component.scss']
 })
 export class AddConcertComponent implements OnInit {
+
+  @Output() concertAdded = new EventEmitter<any>();
   concertForm: FormGroup;
   concert = new Concert();
   locations: Location[] = [];
@@ -26,7 +29,8 @@ export class AddConcertComponent implements OnInit {
   constructor(
     public concertService: ConcertService, 
     public locationService: LocationService,
-    public singerService: SingerService) { }
+    public singerService: SingerService,
+    private concertSharedService: ConcertSharedService) { }
 
   ngOnInit(): void {
     this.loadData();
@@ -57,7 +61,7 @@ export class AddConcertComponent implements OnInit {
       this.concert.locationId = this.concertForm.get('location').value;
       this.concert.singerId = this.concertForm.get('singer').value;
   
-      this.concertService.add(this.concert).subscribe((result) => location.reload() );
+      this.concertService.add(this.concert).subscribe(() => this.concertSharedService.concertAdded(true));
     }
   }
 

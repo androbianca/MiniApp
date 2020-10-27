@@ -12,27 +12,18 @@ namespace Service.Controllers
     [ApiController]
     public class ConcertController : ControllerBase
     {
-        private readonly ILogger<ConcertController> _logger;
-
         private readonly IConcertLogic _concertLogic;
 
-        public ConcertController(IConcertLogic concertLogic, ILogger<ConcertController> logger)
+        public ConcertController(IConcertLogic concertLogic)
         {
             _concertLogic = concertLogic;
-            _logger = logger;
         }
 
         [HttpPost]
         public ActionResult<ConcertDto> AddConcert(ConcertDto concertDto)
         {
             
-             try
-            {
-                _concertLogic.AddConcert(concertDto);
-            } catch (Exception e)
-            {
-                _logger.LogError(e.Message);
-            }
+             _concertLogic.AddConcert(concertDto);
 
             if (!ModelState.IsValid) 
             {
@@ -47,8 +38,6 @@ namespace Service.Controllers
         public ActionResult<ICollection<ConcertDto>> GetAll()
         {
             var concerts = _concertLogic.GetAll();
-
-
 
             return Ok(concerts);
         }

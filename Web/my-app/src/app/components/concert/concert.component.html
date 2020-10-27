@@ -1,2 +1,2 @@
-<app-add-concert></app-add-concert>
-<app-display-concerts></app-display-concerts>
+<app-add-concert (concertAdded)="onConcertAdded($event)"></app-add-concert>
+<app-display-concerts [event]="addedConcertEvent"></app-display-concerts>

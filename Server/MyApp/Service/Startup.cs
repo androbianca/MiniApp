@@ -1,4 +1,5 @@
 using BusinessLogic.Configurations;
+using Elmah.Io.AspNetCore;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -44,6 +45,11 @@ namespace Service
                         o.RegisterValidatorsFromAssemblyContaining<Startup>();
                     });
             services.AddControllers();
+            services.AddElmahIo(o =>
+            {
+                o.ApiKey = "a19b81e9236340569439a03856ea182c";
+                o.LogId = new Guid("e47c45ed-6563-4738-b9a0-29b074692227");
+            });
             services.AddBusinessLogic(Configuration.GetConnectionString("MyApp"));
 
         }
@@ -64,6 +70,9 @@ namespace Service
             //app.UseCors();
 
             app.UseAuthorization();
+            app.UseElmahIo();
+            app.UseElmahIoSerilog();
+
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,0 +1,21 @@
+<centric-login>
+    <ng-container title>
+      <p class="title">User Login</p>
+      <hr class="login-divider">
+    </ng-container>
+    <ng-container form>
+      <form centric-complex-form
+            [formGroup]="loginFormGroup"
+            class="form-login-template">
+          <label>Username</label>
+            <centric-mat-input formControlName="username"
+                               placeholder="Enter your username"></centric-mat-input>
+          <label>Password</label>
+            <centric-mat-input type="password"
+                               formControlName="password"
+                               placeholder="Enter your password"></centric-mat-input>
+        <centric-button (click)="onSubmit()"
+                        class="login-button">Login</centric-button>
+      </form>
+    </ng-container>
+  </centric-login>

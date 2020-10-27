@@ -65,7 +65,7 @@ namespace BusinessLogicTests
             repositoryMock.Setup(x => x.GetAll<Concert>()).Returns(concerts);
             repositoryMock.Setup(x => x.GetByFilter<Concert>(x => x.Id == It.IsAny<Guid>()))
                 .Returns((Guid id) => concerts.FirstOrDefault(x => x.Id == id));
-            concertLogic = new ConcertLogic(unitOfWorkMock.Object, concertSingerLogic);
+           // concertLogic = new ConcertLogic(unitOfWorkMock.Object, concertSingerLogic);
 
         }
 
