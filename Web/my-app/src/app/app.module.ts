@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CentricSidenavModule, CentricHeaderModule, CentricButtonModule, CentricLoginModule, CentricMatCheckboxComponent, CentricMatCheckboxModule, CentricFormModule, CentricMatInputComponent, CentricMatInputModule } from '@centric/ng-styleguide';
+import { CentricSidenavModule, CentricHeaderModule, CentricButtonModule, CentricLoginModule, CentricMatCheckboxComponent, CentricMatCheckboxModule, CentricFormModule, CentricMatInputComponent, CentricMatInputModule, CentricToastrModule } from '@centric/ng-styleguide';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,7 +38,8 @@ import { of } from 'rxjs';
     CentricLoginModule,
     CentricMatCheckboxModule,
     CentricFormModule,
-    CentricMatInputModule
+    CentricMatInputModule,
+    CentricToastrModule.forRoot()
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]

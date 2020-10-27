@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Location } from '../../../shared/models/location.model';
 import { LocationService } from 'src/app/shared/services/location.service';
-import { DialogService } from '@centric/ng-styleguide';
+import { DialogService, ToastrService } from '@centric/ng-styleguide';
 import { MapComponent } from '../map/map.component';
 import { Coordinates } from '../map/coordinates';
 
@@ -29,7 +29,10 @@ export class AddLocationComponent implements OnInit {
     return this.locationForm.get('longitude') as FormControl;
   }
 
-  constructor(private locationService: LocationService, private dialogService: DialogService) { }
+  constructor(
+    private locationService: LocationService,
+    private dialogService: DialogService,
+    private readonly toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -55,7 +58,15 @@ export class AddLocationComponent implements OnInit {
       this.location.latitude = this.latitude.value;
       this.location.longitude = this.longitude.value;
 
-      this.locationService.add(this.location).subscribe();
+      this.locationService.add(this.location).subscribe(() => {
+        this.toastr.success('Process succesfully completed', 'Success', {
+          positionClass: 'toast-bottom'
+        });
+      }, () => {
+        this.toastr.error('The process failed', 'Fail', {
+          positionClass: 'toast-bottom'
+        });
+      });
     }
   }
 

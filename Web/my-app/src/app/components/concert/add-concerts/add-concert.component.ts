@@ -8,6 +8,7 @@ import { SingerService } from 'src/app/shared/services/singer.service';
 import { Singer } from '../../../shared/models/singer.model';
 import { Location } from '../../../shared/models/location.model';
 import { ConcertSharedService } from '../concert-shared.service';
+import { ToastrService } from '@centric/ng-styleguide';
 
 @Component({
   selector: 'app-add-concert',
@@ -27,10 +28,11 @@ export class AddConcertComponent implements OnInit {
   }
 
   constructor(
-    public concertService: ConcertService, 
+    public concertService: ConcertService,
     public locationService: LocationService,
     public singerService: SingerService,
-    private concertSharedService: ConcertSharedService) { }
+    private concertSharedService: ConcertSharedService,
+    private readonly toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.loadData();
@@ -43,7 +45,7 @@ export class AddConcertComponent implements OnInit {
   }
 
   getErrorMessage(control: string): string {
-    if(this.concertForm.get(control).hasError('required') && this.concertForm.get(control).touched) {
+    if (this.concertForm.get(control).hasError('required') && this.concertForm.get(control).touched) {
       return 'This field is required';
     }
   }
@@ -54,16 +56,26 @@ export class AddConcertComponent implements OnInit {
 
   submit(): void {
     this.concertForm.markAllAsTouched();
-    
-    if(this.concertForm.valid) {
+
+    if (this.concertForm.valid) {
       this.concert.name = this.concertForm.get('name').value;
       this.concert.price = +this.concertForm.get('price').value;
       this.concert.locationId = this.concertForm.get('location').value;
       this.concert.singerId = this.concertForm.get('singer').value;
-  
-      this.concertService.add(this.concert).subscribe(() => this.concertSharedService.concertAdded(true));
+
+      this.concertService.add(this.concert).subscribe(() => {
+        this.concertSharedService.concertAdded(true)
+        this.toastr.success('Process succesfully completed', 'Success', {
+          positionClass: 'toast-bottom'
+        });
+      }, () => {
+        this.toastr.error('The process failed', 'Fail', {
+          positionClass: 'toast-bottom'
+        });
+      });
     }
   }
+
 
   private loadData(): void {
     forkJoin({

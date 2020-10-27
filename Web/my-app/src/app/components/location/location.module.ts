@@ -8,7 +8,7 @@ import {
   CentricPaginatorModule, 
   CentricPanelModule, 
   CentricDataGridModule,
-   CentricFormModule, CentricDialogModule, CentricIconModule } from '@centric/ng-styleguide';
+   CentricFormModule, CentricDialogModule, CentricIconModule, CentricToastrModule } from '@centric/ng-styleguide';
 import { MapComponent } from './map/map.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { BrowserModule } from '@angular/platform-browser';
@@ -32,7 +32,7 @@ import { BrowserModule } from '@angular/platform-browser';
     CentricButtonModule,
     GoogleMapsModule,
     BrowserModule ,
-    CentricIconModule
+    CentricIconModule,
   ],
   providers: [],
   entryComponents:[MapComponent]
